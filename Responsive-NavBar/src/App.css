@@ -1,0 +1,106 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 62.5%;
+    font-family: "urbanist";
+}
+
+p,li,button,a{
+    font-size: 1.7rem;
+    letter-spacing: .1rem;
+}
+
+header{
+    background-color: #dfe6f1;
+    height: 10rem;
+    box-shadow: rgba(33, 35, 38, 0.1) 0 10px 10px -10px;
+    width: 100%;
+    height: 10rem;
+}
+
+.container{
+    height: 10rem;
+    max-width: 132rem;
+    margin: auto;
+}
+
+.grid{
+    display: grid;
+}
+
+.navbar-grid{
+    grid-template-columns: 0.5fr 1fr;
+    align-items: center;
+    height: 10rem;
+    padding: 0 3.2rem;
+}
+
+li{
+
+    list-style: none;
+}
+
+a{
+    color: #000;
+    
+    &:hover{
+        color: #2e86c1;
+        text-decoration: underline;
+    }
+}
+
+nav ul{
+    display: flex;
+    justify-content: flex-end;
+    gap: 3.2rem;
+    
+}
+
+.ham-menu{
+    display: none;
+}
+
+.menu{
+    font-size: 3.5rem;
+    width: 70px;
+}
+
+/* media queries */
+
+@media screen and (max-width: 998px) {
+
+    .menu-web{
+        display: none;
+    }
+
+    .ham-menu{
+        display: inline-block;
+        text-align: end;
+    }
+
+    .menu-mobile{
+        position: absolute;
+        left: 0;
+        top: 10rem;
+        box-shadow: rgba(0, 0, 0, 0.25) 0 14px 28px;
+        width: 100%;
+    }
+
+    .menu-mobile ul{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+
+        & li:first-child{
+            margin-top: 1.2rem;
+        }
+
+        & li:last-child{
+            margin-bottom: 1.2rem;
+        }
+    }
+}
