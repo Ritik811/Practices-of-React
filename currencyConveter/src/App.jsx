@@ -1,7 +1,8 @@
 import "./App.css";
+import { CurrencyConveter } from "./components/CurrencyConverter";
 
 const App = () => {
-  return <h1>Currency Conveter</h1>;
+  return <CurrencyConveter />
 };
 
 export default App;
