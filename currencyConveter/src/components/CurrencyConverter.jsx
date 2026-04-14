@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { fetchCurrencyConverter } from "../api/postApi";
 
 export const CurrencyConveter = () => {
   const [amount, setAmount] = useState(0);
@@ -6,7 +7,25 @@ export const CurrencyConveter = () => {
   const [fromCurrency, setFromCurrency] = useState("USD");
   const [loading, setLoading] = useState(false);
   const [convertedAmount, setConvertedAmount] = useState(null);
-  const [error, setError] = useState(false);
+  const [error, setError] = useState(null);
+
+  const handleCurrencyConverter = async () => {
+    setLoading(true);
+    try {
+      const res = await fetchCurrencyConverter(
+        fromCurrency,
+        toCurrency,
+        amount,
+      );
+      const { conversion_result } = res.data;
+      console.log(res.data);
+      setConvertedAmount(conversion_result);
+      setLoading(false);
+    } catch (error) {
+      setError(error.message);
+    }
+  };
+
   return (
     <section className="currency-converter">
       <div className="currency-div">
@@ -56,20 +75,24 @@ export const CurrencyConveter = () => {
           </div>
         </div>
 
-        <button disabled={loading || amount <= 0}>
+        <button
+          disabled={loading || amount <= 0}
+          onClick={handleCurrencyConverter}
+        >
           {loading ? "Converting..." : "Convert"}
         </button>
-      
-      <hr />
-      {convertedAmount && (
-        <div>
-          <h2>
-            {amount} {fromCurrency} = {convertedAmount.toFixed(2)} {toCurrency}
-          </h2>
-        </div>
-      )}
 
-      {error && <p>{error}</p>}
+        <hr />
+        {convertedAmount && (
+          <div>
+            <h2>
+              {amount} {fromCurrency} = {convertedAmount.toFixed(2)}{" "}
+              {toCurrency}
+            </h2>
+          </div>
+        )}
+
+        {error && <p>{error}</p>}
       </div>
     </section>
   );
