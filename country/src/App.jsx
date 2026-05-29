@@ -4,6 +4,7 @@ import { AboutPage } from "./Pages/About";
 import { CountryPage } from "./Pages/Country";
 import { ContactPage } from "./Pages/Contact";
 import { AppLayout } from "./components/Layout/AppLayout";
+import "./App.css";
 
 const App = () => {
   const router = createBrowserRouter([

@@ -1,3 +1,11 @@
+import { HeroSection } from "../components/Layout/HeorSection";
+import { AboutPage } from "./About";
+
 export const HomePage = () => {
-  return <h1>HomePage</h1>;
+  return (
+    <>
+      <HeroSection />
+      <AboutPage />
+    </>
+  );
 };
