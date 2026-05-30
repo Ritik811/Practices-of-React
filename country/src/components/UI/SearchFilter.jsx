@@ -1,4 +1,4 @@
-export const SearchFilter = ({ searchInput, setSearchInput }) => {
+export const SearchFilter = ({ setSearchInput, setFilter }) => {
   return (
     <section className="section-searchFilter container">
       <input
@@ -16,7 +16,10 @@ export const SearchFilter = ({ searchInput, setSearchInput }) => {
       </div>
 
       <div>
-        <select className="select-section">
+        <select
+          className="select-section"
+          onChange={(evt) => setFilter(evt.target.value)}
+        >
           <option value="All">All</option>
           <option value="Africa">Africa</option>
           <option value="America">America</option>

@@ -6,6 +6,7 @@ import { getCountryData } from "../api/getApi";
 export const CountryPage = () => {
   const [country, setCountry] = useState([]);
   const [searchInput, setSearchInput] = useState("");
+  const [filter, setFilter] = useState("All");
   const [isPending, startTransition] = useTransition();
   useEffect(() => {
     startTransition(async () => {
@@ -14,19 +15,45 @@ export const CountryPage = () => {
     });
   }, []);
 
-  const searchFilter = country.filter((curCountry) => {
+  const searchCountry = country.filter((curCountry) => {
     let countryName = curCountry.name.common;
     return countryName.toLowerCase().includes(searchInput.toLowerCase());
   });
 
-  console.log(searchFilter);
+  // const searchCountry = (curCountry) => {
+  //   let countryName = curCountry.name.common;
+  //   if (searchInput) {
+  //     return countryName.toLowerCase().includes(searchInput.toLowerCase());
+  //   } else {
+  //     return curCountry;
+  //   }
+  // };
+
+  const filterRegion = (curCountry) => {
+    if (filter === "All") return true;
+    return curCountry.region === filter;
+  };
+
+  // const filterCountries = country.filter((curCountry) => {
+  //   return searchCountry(curCountry) && filterRegion(curCountry);
+  // });
+
+  const filterCountries = searchCountry.filter((curCountry) => {
+    return filterRegion(curCountry);
+  });
+
+  console.log(filterCountries);
 
   return (
     <section className="country-section">
-      <SearchFilter searchInput={searchInput} setSearchInput={setSearchInput} />
+      <SearchFilter
+        searchInput={searchInput}
+        setSearchInput={setSearchInput}
+        setFilter={setFilter}
+      />
 
       <ul className="grid grid-four-cols">
-        {searchFilter.map((curCountry, index) => {
+        {filterCountries.map((curCountry, index) => {
           return <CountryCard curCountry={curCountry} key={index} />;
         })}
       </ul>
