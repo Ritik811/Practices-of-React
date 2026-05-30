@@ -50,6 +50,8 @@ export const CountryPage = () => {
         searchInput={searchInput}
         setSearchInput={setSearchInput}
         setFilter={setFilter}
+        country={country}
+        setCountry={setCountry}
       />
 
       <ul className="grid grid-four-cols">
