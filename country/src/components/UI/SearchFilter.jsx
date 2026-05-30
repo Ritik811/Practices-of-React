@@ -1,7 +1,11 @@
-export const SearchFilter = () => {
+export const SearchFilter = ({ searchInput, setSearchInput }) => {
   return (
     <section className="section-searchFilter container">
-      <input type="text" placeholder="search" />
+      <input
+        type="text"
+        placeholder="search"
+        onChange={(evt) => setSearchInput(evt.target.value)}
+      />
 
       <div>
         <button>ASC</button>
